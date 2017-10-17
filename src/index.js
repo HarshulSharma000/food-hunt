@@ -12,7 +12,7 @@ console.disableYellowBox = true;
 const AppNavigator = TabNavigator(Routes, {
     lazy: true,
     swipeEnabled: false
-});
+ });
 
 const navReducer = (state, action) => {
     const newState = AppNavigator.router.getStateForAction(action, state);

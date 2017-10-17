@@ -5,7 +5,7 @@ class Map extends Component {
     render() {
         return (
             <View style={styles.container} >
-                <Text> My map that leads to you.... There is nothing I can do.. MY MAP that leads to you... </Text>
+                <Text> My map that leads to you.... There is nothing I can do.. MY MAP that leads to you...  Cmon be my baby com</Text>
             </View>
         );
     }

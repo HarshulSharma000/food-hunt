@@ -24,6 +24,9 @@ const Routes = {
                     Setting: { screen: SettingScreen }
                 })
             }
+        }, {
+            tabBarPosition: 'bottom',
+            lazy: true
         })
     }   
 };
