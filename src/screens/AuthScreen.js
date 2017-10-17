@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
-import { Button } from 'react-native-elements';
+//import { Button } from 'react-native-elements';
+import { Button } from 'native-base';
+import { Entypo } from '@expo/vector-icons';
 
 import * as actions from '../actions';
 
@@ -15,12 +17,16 @@ class Auth extends Component {
         return (
             <View style={styles.container} >
                 <View >
-                <Text style={{ color: 'white', fontSize: 30 }}> Always on Facebook??? </Text>
+                <Text style={{ color: 'white', fontSize: 30, marginBottom: 20 }}> Always on Facebook??? </Text>
+                
                 <Button 
-                title='Log IN' 
+                info 
+                block
                 onPress={this.props.facebookLogin} 
-                buttonStyle={{ marginTop: 40, width: SCREEN_WIDTH - 5 }}
-                />
+                >
+                    <Text style={{ fontSize: 20, marginRight: 20 }}> Log IN </Text>
+                    <Entypo name='facebook' size={30} />
+                </Button>
                 </View>
             </View>
         );

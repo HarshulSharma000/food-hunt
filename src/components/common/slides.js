@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, StyleSheet, View, Dimensions } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button } from 'native-base';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class Slides extends Component {
+    renderIcon(i) {
+        if (i === 0) {
+            return (<MaterialCommunityIcons name='food' size={300} />);
+        }
+    }
     renderSlides() {
         const { data, onComplete } = this.props;
         return data.map((item, i) => {
@@ -14,7 +20,14 @@ class Slides extends Component {
                         <Text style={styles.text}>
                             {item.text}
                         </Text>
-                        <Button title='Ready?' onPress={() => onComplete()} buttonStyle={{ marginTop: 40, width: SCREEN_WIDTH - 20 }} />
+                        <Button 
+                        style={{ marginTop: 30, backgroundColor: '#308e40', height: 50 }} 
+                        onPress={() => onComplete()}
+                        block
+                        >
+                            <Text style={{ color: '#ffffff', fontSize: 20, marginRight: 20 }}> Ready? </Text>
+                            <MaterialCommunityIcons name="login" color='white' size={30} />
+                        </Button>
                     </View>
                 );
             }
@@ -23,6 +36,7 @@ class Slides extends Component {
                     <Text style={styles.text}>
                         {item.text}
                     </Text>
+                    {this.renderIcon(i)}
                 </View>
             );
         });
