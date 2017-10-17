@@ -31,6 +31,16 @@ class Slides extends Component {
                     </View>
                 );
             }
+            if (i === 0) {
+                return (
+                    <View style={[styles.container, { backgroundColor: item.color }]} key={i}>
+                        <Text style={[styles.text, { color: '#000000' }]}>
+                            {item.text}
+                        </Text>
+                        <MaterialCommunityIcons name='food' size={300} />
+                    </View>
+                );
+            }
             return (
                 <View style={[styles.container, { backgroundColor: item.color }]} key={i}>
                     <Text style={styles.text}>
