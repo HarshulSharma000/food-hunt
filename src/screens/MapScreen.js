@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
 class Map extends Component {
+    componentWillMount() {
+        
+    }
     render() {
         return (
             <View style={styles.container} >

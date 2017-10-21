@@ -11,7 +11,7 @@ const SCREEN_WIDTH = Dimensions.get('window').witdh;
 
 class Auth extends Component {
     componentDidMount() {
-        
+        this.props.getLocation();
     }
     render() {
         return (
@@ -26,6 +26,13 @@ class Auth extends Component {
                 >
                     <Text style={{ fontSize: 20, marginRight: 20 }}> Log IN </Text>
                     <Entypo name='facebook' size={30} />
+                </Button>
+                <Button 
+                info 
+                block
+                onPress={this.props.getLocation} 
+                >
+                    <Text style={{ fontSize: 20, marginRight: 20 }}> Hitme!</Text>
                 </Button>
                 </View>
             </View>
