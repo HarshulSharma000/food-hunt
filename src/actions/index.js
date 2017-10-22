@@ -12,6 +12,7 @@ export const getLocation = () => async (dispatch) => {
         console.log("you didn't give any permissions to me :(");
         return;
     }
+<<<<<<< HEAD
     console.log(Constants.deviceId);
     //let answer = await Geolocation.getCurrentPosition((inputdata) => console.log(inputdata));
     const answer = await Location.getProviderStatusAsync();
@@ -33,6 +34,14 @@ export const getLocation = () => async (dispatch) => {
     } else {
         location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true, maximumAge: 1000 });
     }
+=======
+    await Location.setApiKey('AIzaSyBYpuG_Lq3xFJoA6HKz__IBS81wB4bKtvk');
+   // let answer = await Geolocation.getCurrentPositionAsync({ enableHighAccuracy: false });
+   let answer = await Location.getProviderStatusAsync();
+    console.log('past this shit');  
+    console.log(answer);
+    let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true, maximumAge: 10000 });
+>>>>>>> ec4d7d865a545789f2252d7602e12b7bf40de898
     console.log("way past");
     console.log(location);
 };
