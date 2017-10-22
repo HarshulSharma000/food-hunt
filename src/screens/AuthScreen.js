@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
-//import { Button } from 'react-native-elements';
 import { Button } from 'native-base';
 import { Entypo } from '@expo/vector-icons';
 
@@ -14,26 +13,28 @@ class Auth extends Component {
         this.props.getLocation();
     }
     render() {
+        console.log(this.props.state);
         return (
             <View style={styles.container} >
                 <View >
-                <Text style={{ color: 'white', fontSize: 30, marginBottom: 20 }}> Always on Facebook??? </Text>
-                
-                <Button 
-                info 
-                block
-                onPress={this.props.facebookLogin} 
-                >
-                    <Text style={{ fontSize: 20, marginRight: 20 }}> Log IN </Text>
-                    <Entypo name='facebook' size={30} />
-                </Button>
-                <Button 
-                info 
-                block
-                onPress={this.props.getLocation} 
-                >
-                    <Text style={{ fontSize: 20, marginRight: 20 }}> Hitme!</Text>
-                </Button>
+                    <Text 
+                        style={{ 
+                            color: 'white', 
+                            fontSize: 30, 
+                            marginBottom: 20 
+                        }}
+                    > 
+                            Always on Facebook??? 
+                    </Text>
+                    
+                    <Button 
+                    info 
+                    block
+                    onPress={this.props.facebookLogin} 
+                    >
+                        <Text style={{ fontSize: 20, marginRight: 20 }}> Log IN </Text>
+                        <Entypo name='facebook' size={30} />
+                    </Button>
                 </View>
             </View>
         );
@@ -49,4 +50,6 @@ const styles = StyleSheet.create({
   },
 }); 
 
-export default connect(null, actions)(Auth);
+const mapStateToProps = (state) => ({ state });
+
+export default connect(mapStateToProps, actions)(Auth);
