@@ -1,10 +1,10 @@
 {
   "expo": {
     "name": "food-hunt",
-    "description": "An empty new project",
+    "description": "An empty new project just for fun and learning",
     "slug": "food-hunt",
     "privacy": "public",
-    "sdkVersion": "21.0.0",
+    "sdkVersion": "22.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
