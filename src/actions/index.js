@@ -10,10 +10,12 @@ export const getLocation = () => async (dispatch) => {
         console.log("you didn't give any permissions to me :(");
         return;
     }
+    await Location.setApiKey('AIzaSyBYpuG_Lq3xFJoA6HKz__IBS81wB4bKtvk');
    // let answer = await Geolocation.getCurrentPositionAsync({ enableHighAccuracy: false });
-    console.log('past this shit');
-    //console.log(answer);
-    let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true, maximumAge: 1000 });
+   let answer = await Location.getProviderStatusAsync();
+    console.log('past this shit');  
+    console.log(answer);
+    let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true, maximumAge: 10000 });
     console.log("way past");
     console.log(location);
 };
