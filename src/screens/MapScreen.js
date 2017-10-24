@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 
+import * as actions from '../actions';
+
 class Map extends Component {
-    componentWillMount() {
-        
+    state = { mapLoaded: false };
+    async componentWillMount() {
+        await this.props.getLocation();
+    }
+    componentDidMount() {
+        this.setState({ mapLoaded: true });
     }
     render() {
         const { latitude, longitude } = this.props;
+        console.log(latitude, longitude);
+        if (!this.state.mapLoaded) {
+            return (
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+                <ActivityIndicator size='large' />
+            </View>
+            );
+        }
         return (
             <View style={styles.container} >
                 <MapView 
@@ -20,11 +34,11 @@ class Map extends Component {
                     right: 0,
                     bottom: 0
                 }}
-                intialRegion={{
+                region={{
                     latitude,
                     longitude,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421
+                    latitudeDelta: 0.0221, //Only Expo Knows why the are here
+                    longitudeDelta: 0.0221,
                 }}
                 />
             </View>
@@ -47,4 +61,4 @@ const mapStateToProps = (state) => {
     return { longitude, latitude };
 };
 
-export default connect(mapStateToProps)(Map);
+export default connect(mapStateToProps, actions)(Map);

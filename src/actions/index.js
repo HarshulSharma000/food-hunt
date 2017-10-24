@@ -12,7 +12,8 @@ export const getLocation = () => async (dispatch) => {
         console.log("you didn't give any permissions to me :(");
         return;
     }
-    //const answer = await Location.getProviderStatusAsync();
+    const answer = await Location.getProviderStatusAsync();
+    console.log(answer);
     if (Constants.deviceId === 'a93c7aa8-5f8d-49b4-84e4-c7c190ac3957') {
         location = {
             coords: {
@@ -29,7 +30,8 @@ export const getLocation = () => async (dispatch) => {
     } else {
         location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true, maximumAge: 1000 });
     }
-
+    console.log('current location is');
+    console.log(location);
     dispatch({
         type: LOCATION_UPDATE,
         payload: location
