@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
+import { Button } from 'native-base';
 
 import * as actions from '../actions';
 
 class Map extends Component {
     state = { mapLoaded: false };
     async componentWillMount() {
+        const { latitude, longitude } = this.props;
         await this.props.getLocation();
     }
     componentDidMount() {
@@ -41,6 +43,9 @@ class Map extends Component {
                     longitudeDelta: 0.0221,
                 }}
                 />
+                <Button onPress={async () => await this.props.getList(latitude, longitude)}>
+                    <Text> Press me to find glory! </Text>
+                </Button>
             </View>
         );
     }
@@ -57,7 +62,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     const { latitude, longitude } = state.loc.location.coords;
-    console.log(latitude);
     return { longitude, latitude };
 };
 

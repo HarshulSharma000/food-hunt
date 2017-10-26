@@ -16,8 +16,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case LOCATION_UPDATE:
-        console.log("current status");
-        console.log(action.payload);
         return { ...state, location: action.payload };
         default:
         return state;
