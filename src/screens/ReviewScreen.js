@@ -2,22 +2,27 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Platform } from 'react-native';
 //import { Button } from 'react-native-elements';
 import { Button } from 'native-base';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 
 class Review extends Component {
     static navigationOptions = ({ navigation }) => ({
-        title: 'Review',
-    headerRight: 
+        headerRight: ( //Sometimes it works sometimes it doesn't maybe its about first component..
                 <Button 
                     transparent 
-                    style={{ marginRight: 10 }} 
+                    style={{ marginLeft: 20, width: 50 }} 
                     onPress={() => { navigation.navigate('Setting'); }}//Try text in place of icon
                 >
                         <FontAwesome size={30} name='gear' />
-                </Button>,
-
-        style: {
-            marginTop: Platform.OS === 'Android' ? 40 : 0
+                </Button>
+        ),
+        tabBarIcon: ({ tintcolor }) => { 
+            return (
+                <MaterialIcons 
+                    name='favorite' 
+                    size={26} 
+                    color='white'
+                />
+            ); 
         }
     });
     

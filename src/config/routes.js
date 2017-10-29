@@ -26,6 +26,20 @@ const Routes = {
             }
         }, {
             tabBarPosition: 'bottom',
+            tabBarOptions: {
+                showLabel: false,
+                // labelStyle: { 
+                //     fontSize: 12,
+                //     height: 10
+                // },
+                tabStyle: {
+                    height: 60,
+                },
+                showIcon: true,
+                indicatorStyle: {
+                    opacity: 0
+                }
+            },
             lazy: true
         })
     }   

@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 
 class Deck extends Component {
+    static navigationOptions= {
+        tabBarIcon: ({ tintcolor }) => { 
+            return (
+                <Entypo 
+                    name='list' 
+                    size={26} 
+                    color='white'
+                />
+            ); 
+        }
+    }
     render() {
         return (
             <View style={styles.container} >

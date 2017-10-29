@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
+import { Text, View, StyleSheet, ActivityIndicator, Dimensions } from 'react-native';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 import { Button } from 'native-base';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import * as actions from '../actions';
 
+const SCREEN_WIDTH = Dimensions.get('screen').width;
 class Map extends Component {
+    static navigationOptions = {
+        tabBarIcon: ({ tintcolor }) => { 
+            return (
+                <MaterialCommunityIcons 
+                    name='google-maps' 
+                    size={26} 
+                    color='white'
+                />
+            ); 
+        }
+    };
+
     state = { mapLoaded: false };
     async componentWillMount() {
         const { latitude, longitude } = this.props;
@@ -16,7 +30,7 @@ class Map extends Component {
         this.setState({ mapLoaded: true });
     }
     render() {
-        const { latitude, longitude } = this.props;
+        const { latitude, longitude } = this.props.location.coords;
         console.log(latitude, longitude);
         if (!this.state.mapLoaded) {
             return (
@@ -26,7 +40,7 @@ class Map extends Component {
             );
         }
         return (
-            <View style={styles.container} >
+            <View style={{ flex: 1 }} >
                 <MapView 
                 style={{  //Its all about style B)
                     flex: 1,
@@ -42,9 +56,28 @@ class Map extends Component {
                     latitudeDelta: 0.0221, //Only Expo Knows why the are here
                     longitudeDelta: 0.0221,
                 }}
+                onRegionChangeComplete={({ latitude, longitude }) => {
+                    //console.log(latitude, longitude);
+                    this.props.location.coords.latitude = latitude;
+                    this.props.location.coords.longitude = longitude;
+                    this.props.setLocation(this.props.location);
+                }}
                 />
-                <Button onPress={async () => await this.props.getList(latitude, longitude)}>
-                    <Text> Press me to find glory! </Text>
+                <Button 
+                large
+                block
+                onPress={async () => await this.props.getList(latitude, longitude)}
+                style={{ 
+                    backgroundColor: '#009688',
+                    position: 'absolute',
+                    left: 20,
+                    right: 20,
+                    bottom: 30
+                }}
+                rounded
+                >
+                    <Text style={{ color: '#ffffff', marginRight: 10, fontSize: 20 }}> Press me to find glory! </Text>
+                    <MaterialIcons name='search' size={40} style={{ color: 'white' }} />
                 </Button>
             </View>
         );
@@ -61,8 +94,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    const { latitude, longitude } = state.loc.location.coords;
-    return { longitude, latitude };
+    const location = state.loc.location;
+    return { location };
 };
 
 export default connect(mapStateToProps, actions)(Map);
