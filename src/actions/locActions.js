@@ -11,28 +11,32 @@ export const getLocation = () => async (dispatch) => {
         return;
     }
     //const answer = await Location.getProviderStatusAsync();
+    console.log(Constants.deviceId);
     while (!location) {
+        console.log(location);
         try {
-            location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000000 });
+            location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true, timeout: 3000, maximumAge: 1000000 });
             console.log('got this', location);
+            if (Constants.deviceId === 'a93c7aa8-5f8d-49b4-84e4-c7c190ac3957') { //Some special devices require special treatement and are hopeless
+                location = {
+                    coords: {
+                      accuracy: 786,
+                      altitude: 0,
+                      heading: 0,
+                      latitude: 28.6457003,
+                      longitude: 77.2734208,
+                      speed: 0,
+                    },
+                    mocked: false,
+                    timestamp: 1508672129296,
+                };
+            }
         } catch (any) {
             console.log('One unsuccessful try');
         }
     }
-    // if (Constants.deviceId === 'a93c7aa8-5f8d-49b4-84e4-c7c190ac3957') { //Some special devices require special treatement and are hopeless
-    //     location = {
-    //         coords: {
-    //           accuracy: 786,
-    //           altitude: 0,
-    //           heading: 0,
-    //           latitude: 28.6457003,
-    //           longitude: 77.2734208,
-    //           speed: 0,
-    //         },
-    //         mocked: false,
-    //         timestamp: 1508672129296,
-    //     };
-    // }
+    
+    
     dispatch({
         type: LOCATION_UPDATE,
         payload: location
