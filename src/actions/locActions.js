@@ -17,6 +17,8 @@ export const getLocation = () => async (dispatch) => {
         try {
             location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true, timeout: 3000, maximumAge: 1000000 });
             console.log('got this', location);
+        } catch (any) {
+            console.log('One unsuccessful try');
             if (Constants.deviceId === 'a93c7aa8-5f8d-49b4-84e4-c7c190ac3957') { //Some special devices require special treatement and are hopeless
                 location = {
                     coords: {
@@ -31,8 +33,6 @@ export const getLocation = () => async (dispatch) => {
                     timestamp: 1508672129296,
                 };
             }
-        } catch (any) {
-            console.log('One unsuccessful try');
         }
     }
     

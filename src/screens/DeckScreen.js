@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import { MapView } from 'expo';
 import { Entypo } from '@expo/vector-icons';
 import { Card, CardItem } from 'native-base';
 import { connect } from 'react-redux';
@@ -19,21 +20,100 @@ class Deck extends Component {
             ); 
         }
     }
-    renderCard(item) {
+    state ={
+        region: { 
+            latitude: 0,
+            longitude: 0,
+            latitudeDelta: 0,
+            longitudeDelta: 0
+        }
+    }
+    async takeSnapshot() {
+        // 'takeSnapshot' takes a config object with the
+        // following options
+        const snapshot = await this.map.takeSnapshot({
+          height: 300,     // optional, when omitted the view-height is used
+          format: 'png',   // image formats: 'png', 'jpg' (default: 'png')
+          quality: 0.8,    // image quality: 0..1 (only relevant for jpg, default: 1)
+          result: 'file'   // result types: 'file', 'base64' (default: 'file')
+        });
+        console.log(snapshot);
+    }
+    async renderMap(latitude, longitude) {
+        let self = this;
+        const mapz = (<MapView
+            intialRegion={{ 
+                latitude,
+                longitude,
+                latitudeDelta: 0.00221,
+                longitudeDelta: 0.00221
+            }}
+            ref={map => {
+                //console.log("here lies my map", map);
+                //console.log(self);
+                 self.map = map; 
+            }}
+        >
+        </MapView>);
+        //console.log(mapz);
+        console.log('Always on map', self.map);
+        const snapshot = await mapz.takeSnapshot({
+            height: 300,     // optional, when omitted the view-height is used
+            format: 'png',   // image formats: 'png', 'jpg' (default: 'png')
+            quality: 0.8,    // image quality: 0..1 (only relevant for jpg, default: 1)
+            result: 'file'   // result types: 'file', 'base64' (default: 'file')
+        });
+        console.log(snapshot);
+        //this.takeSnapshot();
+    }
+    mapTime(restaurant) {
+        console.log('maprendered');
+        return (
+            <MapView
+                liteMode
+                scrollEnabled={false}
+                style={{
+                    flex: 1,
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0
+                }}
+                region={{
+                    longitude: parseFloat(restaurant.location.longitude),
+                    latitude: parseFloat(restaurant.location.latitude),
+                    latitudeDelta: 0.00221,
+                    longitudeDelta: 0.00221,    
+                }}
+            />
+        );
+    }
+    renderCard(item, i, index) {
         //console.log('Duty Calls', item.name);
+        const { restaurant } = item;
+        // this.renderMap(
+        //     parseFloat(restaurant.location.longitude), 
+        //     parseFloat(restaurant.location.latitude)
+        // );
         return (//To be continued...
             <Card>
-                <CardItem>
-                    <Text> {item.restaurant.name}</Text>
+                <CardItem style={{ flex: 1, height: 300 }}>
+                {(i - index < 2) ? this.mapTime(restaurant) : null}    
                 </CardItem>
                 <CardItem>
-                    <Text> {item.restaurant.location.address} </Text>
+                    <Text style={{ fontSize: 10}}> {restaurant.name}</Text>
                 </CardItem>
-                <StarRating
-                disabled
-                maxStars={5}
-                rating={item.restaurant.user_rating.aggregate_rating}
-                />
+                <CardItem>
+                    <Text> {restaurant.location.address} </Text>
+                </CardItem>
+                <CardItem>
+                    <StarRating
+                    disabled
+                    maxStars={5}
+                    rating={restaurant.user_rating.aggregate_rating}
+                    />
+                </CardItem>
             </Card>     
         );
     }
@@ -43,7 +123,7 @@ class Deck extends Component {
            
                 <Swipe
                 data={data}
-                renderCard={this.renderCard}
+                renderCard={this.renderCard.bind(this)}
                 />
         );
     }

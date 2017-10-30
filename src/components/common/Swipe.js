@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Animated, PanResponder, Dimensions, UIManager, LayoutAnimation } from 'react-native';
+import { View, Animated, PanResponder, Dimensions, UIManager, LayoutAnimation, Text } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
-const SWIPE_OUT_DURATION = 300;
+const SWIPE_OUT_DURATION = 200;
 
 class Swipe extends Component {
     static defaultProps = {
@@ -37,8 +37,8 @@ class Swipe extends Component {
       }
     }
     componentWillUpdate() {
-      const nothing = UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
-      LayoutAnimation.spring();
+      //const nothing = UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
+      //LayoutAnimation.spring();
     }
      onSwipeComplete(direction) {
       const { onSwipeLeft, onSwipeRight, data } = this.props;
@@ -86,6 +86,15 @@ class Swipe extends Component {
       }
 
       return this.props.data.map((item, i) => {
+        if (i - this.state.index > 2) {
+        return (
+          <Animated.View
+          style={[styles.cardStyle, { zIndex: 5, top: 10 * (i - this.state.index), height: 400 }]}
+          > 
+          <Text> HI I am empty! </Text>
+          </Animated.View>
+        );
+      }
         if (i < this.state.index) { return null; }
 
         if (i === this.state.index) {
@@ -95,7 +104,7 @@ class Swipe extends Component {
             style={[styles.cardStyle, this.position.getLayout(), { zIndex: 99 }, this.getCardValue()]}
             key={item.id}
             >
-              {this.props.renderCard(item)}
+              {this.props.renderCard(item, i, this.state.index)}
             </Animated.View>
           ); 
         } 
@@ -104,7 +113,7 @@ class Swipe extends Component {
             style={[styles.cardStyle, { zIndex: 5, top: 10 * (i - this.state.index) }]}
             key={item.id}
             >
-              {this.props.renderCard(item)}
+              {this.props.renderCard(item, i, this.state.index)}
             </Animated.View>
           );   
       }).reverse();
