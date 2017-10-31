@@ -1,6 +1,7 @@
-import { LIST_UPDATE } from '../actions/Types';
+import { LIST_UPDATE, ADD_TO_LIKED_LIST } from '../actions/Types';
 
-const INITIAL_STATE = [{
+const INITIAL_STATE = {
+  fetchedList:  [{
     restaurant: {
       R: {
         res_id: 18548025,
@@ -43,11 +44,18 @@ const INITIAL_STATE = [{
         "votes": "0",
       },
     }
-  }];
+  }],
+  likedList: [
+
+  ]
+};
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case LIST_UPDATE:
-            return action.payload;
+            return { ...state, fetchedList: action.payload };
+        case ADD_TO_LIKED_LIST:
+            state.likedList.push(action.payload)
+            return { ...state };
         default:
             return state;
     }

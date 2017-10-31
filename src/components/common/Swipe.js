@@ -3,7 +3,7 @@ import { View, Animated, PanResponder, Dimensions, UIManager, LayoutAnimation, T
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
-const SWIPE_OUT_DURATION = 200;
+const SWIPE_OUT_DURATION = 100;
 
 class Swipe extends Component {
     static defaultProps = {
@@ -61,9 +61,9 @@ class Swipe extends Component {
     forceSwipe(direction) {
       let x = 0;
       if (direction === 'right') {
-        x = SCREEN_WIDTH;
+        x = SCREEN_WIDTH + 50;
       } else if (direction === 'left') {
-        x = -SCREEN_WIDTH;
+        x = -SCREEN_WIDTH + 50;
       } else {
         console.log('Sorry Wrong Input in forceswipe(){"left","right"})');
         x = 0;
@@ -90,6 +90,7 @@ class Swipe extends Component {
           return (
             <Animated.View
             style={[styles.cardStyle, { zIndex: 5, top: 10 * (i - this.state.index), height: 600 }]}
+            key={item.key}
             > 
             <Text> HI I am empty! </Text>
             </Animated.View>
@@ -102,7 +103,7 @@ class Swipe extends Component {
             <Animated.View 
             {...this.panResponder.panHandlers}
             style={[styles.cardStyle, this.position.getLayout(), { zIndex: 99 }, this.getCardValue()]}
-            key={item.id}
+            key={item.key}
             >
               {this.props.renderCard(item, i, this.state.index)}
             </Animated.View>
@@ -111,7 +112,7 @@ class Swipe extends Component {
           return (
             <Animated.View
             style={[styles.cardStyle, { zIndex: 5, top: 10 * (i - this.state.index) }]}
-            key={item.id}
+            key={item.key}
             >
               {this.props.renderCard(item, i, this.state.index)}
             </Animated.View>

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import StarRating from 'react-native-star-rating';
 
 import Swipe from '../components/common/Swipe';
+import * as actions from '../actions';
 
 class Deck extends Component {
     static navigationOptions= {
@@ -97,6 +98,10 @@ class Deck extends Component {
             </MapView>
         );
     }
+    onSwipeRight(item) {
+        console.log(item);
+        this.props.addToLikedList(item);
+    }
     renderCard(item, i, index) {
         const { restaurant } = item;
         // this.renderMap(
@@ -131,6 +136,7 @@ class Deck extends Component {
                 <Swipe
                 data={data}
                 renderCard={this.renderCard.bind(this)}
+                onSwipeRight={this.onSwipeRight.bind(this)}
                 />
         );
     }
@@ -147,7 +153,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     //console.log(state.list);
-    return { data: state.list };
+    return { data: state.list.fetchedList };
 };
 
-export default connect(mapStateToProps)(Deck);
+export default connect(mapStateToProps, actions)(Deck);
