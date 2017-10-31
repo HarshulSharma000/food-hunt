@@ -87,14 +87,14 @@ class Swipe extends Component {
 
       return this.props.data.map((item, i) => {
         if (i - this.state.index > 2) {
-        return (
-          <Animated.View
-          style={[styles.cardStyle, { zIndex: 5, top: 10 * (i - this.state.index), height: 400 }]}
-          > 
-          <Text> HI I am empty! </Text>
-          </Animated.View>
-        );
-      }
+          return (
+            <Animated.View
+            style={[styles.cardStyle, { zIndex: 5, top: 10 * (i - this.state.index), height: 600 }]}
+            > 
+            <Text> HI I am empty! </Text>
+            </Animated.View>
+          );
+        }
         if (i < this.state.index) { return null; }
 
         if (i === this.state.index) {

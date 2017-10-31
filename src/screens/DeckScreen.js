@@ -56,7 +56,6 @@ class Deck extends Component {
         >
         </MapView>);
         //console.log(mapz);
-        console.log('Always on map', self.map);
         const snapshot = await mapz.takeSnapshot({
             height: 300,     // optional, when omitted the view-height is used
             format: 'png',   // image formats: 'png', 'jpg' (default: 'png')
@@ -67,11 +66,13 @@ class Deck extends Component {
         //this.takeSnapshot();
     }
     mapTime(restaurant) {
-        console.log('maprendered');
+        const longitude = parseFloat(restaurant.location.longitude);
+        const latitude = parseFloat(restaurant.location.latitude)
         return (
             <MapView
                 liteMode
                 scrollEnabled={false}
+                cacheEnabled={true}
                 style={{
                     flex: 1,
                     position: 'absolute',
@@ -81,25 +82,31 @@ class Deck extends Component {
                     bottom: 0
                 }}
                 region={{
-                    longitude: parseFloat(restaurant.location.longitude),
-                    latitude: parseFloat(restaurant.location.latitude),
-                    latitudeDelta: 0.00221,
-                    longitudeDelta: 0.00221,    
+                    longitude,
+                    latitude,
+                    latitudeDelta: 0.000921,
+                    longitudeDelta: 0.000921,    
                 }}
-            />
+            >
+                <MapView.Marker 
+                    coordinate={{
+                        latitude,
+                        longitude
+                    }}
+                />
+            </MapView>
         );
     }
     renderCard(item, i, index) {
-        //console.log('Duty Calls', item.name);
         const { restaurant } = item;
         // this.renderMap(
         //     parseFloat(restaurant.location.longitude), 
         //     parseFloat(restaurant.location.latitude)
         // );
         return (//To be continued...
-            <Card>
+            <Card style={{ height: 500 }}>
                 <CardItem style={{ flex: 1, height: 300 }}>
-                {(i - index < 2) ? this.mapTime(restaurant) : null}    
+                {this.mapTime(restaurant)}    
                 </CardItem>
                 <CardItem>
                     <Text style={{ fontSize: 10}}> {restaurant.name}</Text>
