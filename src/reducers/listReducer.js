@@ -54,7 +54,7 @@ export default (state = INITIAL_STATE, action) => {
         case LIST_UPDATE:
             return { ...state, fetchedList: action.payload };
         case ADD_TO_LIKED_LIST:
-            state.likedList.push(action.payload)
+            state.likedList.push(action.payload); //Sometimes traditions are broken for performance
             return { ...state };
         default:
             return state;
