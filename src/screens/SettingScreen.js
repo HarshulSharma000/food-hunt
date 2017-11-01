@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import { Button } from 'native-base';
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { connect } from 'react-redux';
+
+import * as actions from '../actions';
 
 class Setting extends Component {
     static navigationOptions = {
@@ -17,7 +21,15 @@ class Setting extends Component {
     render() {
         return (
             <View style={styles.container} >
-                <Text> Some things are important... But some are certainly most important. </Text>
+                <Button 
+                block 
+                large 
+                danger
+                onPress={this.props.clearLikedList}
+                >
+                    <MaterialCommunityIcons name='account-remove' size={32} />
+                    <Text> Clear Liked List </Text>
+                </Button>
             </View>
         );
     }
@@ -32,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Setting;
+export default connect(null, actions)(Setting);

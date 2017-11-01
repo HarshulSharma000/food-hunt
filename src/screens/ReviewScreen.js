@@ -28,6 +28,9 @@ class Review extends Component {
             ); 
         }
     });
+    // componentWillRecieveProps(nextProps) {
+
+    // }
     mapTime(restaurant) {
         const longitude = parseFloat(restaurant.location.longitude);
         const latitude = parseFloat(restaurant.location.latitude);
@@ -61,7 +64,6 @@ class Review extends Component {
         );
     }
     renderCard({ item }) {
-        console.log(item);
         const { restaurant } = item;
         // this.renderMap(
         //     parseFloat(restaurant.location.longitude), 
@@ -92,10 +94,11 @@ class Review extends Component {
         //console.log(this.props.data);
         return (
             <View style={styles.container} >
-                <Text> Enjoy your Reviewing </Text>
+
                 <FlatList
                 data={this.props.data.reverse()}
                 renderItem={this.renderCard.bind(this)}
+                extraData={this.props.data}
                 />
             </View>
         );
@@ -112,6 +115,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
+    console.log('something changed', state.list.likedList);
     return { data: state.list.likedList };
 };
 

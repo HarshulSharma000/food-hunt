@@ -21,7 +21,6 @@ class Map extends Component {
         }
     };
 
-    state = { mapLoaded: false };
     async componentWillMount() {
         const { latitude, longitude } = this.props;
         await this.props.getLocation();
@@ -29,16 +28,17 @@ class Map extends Component {
     componentDidMount() {
         this.setState({ mapLoaded: true });
     }
+    componentWillRecieveProps(nextProps) {
+        console.log('doodlee');
+        const { latitude, longitude } = nextProps;
+        console.log(latitude,longitude);
+    }
+    shouldComponentUpdate() {
+        return true;
+    }
     render() {
         const { latitude, longitude } = this.props.location.coords;
         console.log(latitude, longitude);
-        if (!this.state.mapLoaded) {
-            return (
-            <View style={{ flex: 1, justifyContent: 'center' }}>
-                <ActivityIndicator size='large' />
-            </View>
-            );
-        }
         return (
             <View style={{ flex: 1 }} >
                 <MapView 
@@ -57,7 +57,6 @@ class Map extends Component {
                     longitudeDelta: 0.0221,
                 }}
                 onRegionChangeComplete={({ latitude, longitude }) => {
-                    //console.log(latitude, longitude);
                     this.props.location.coords.latitude = latitude;
                     this.props.location.coords.longitude = longitude;
                     this.props.setLocation(this.props.location);
@@ -66,7 +65,11 @@ class Map extends Component {
                 <Button 
                 large
                 block
-                onPress={async () => await this.props.getList(latitude, longitude)}
+                onPress={async () => {
+                    const {latitude, longitude} = this.props.location.coords;//Aim is to use props not captured variables 
+                    await this.props.getList(latitude, longitude);
+                    this.props.navigation.navigate('Deck');
+                }}
                 style={{ 
                     backgroundColor: '#009688',
                     position: 'absolute',
@@ -76,7 +79,7 @@ class Map extends Component {
                 }}
                 rounded
                 >
-                    <Text style={{ color: '#ffffff', marginRight: 10, fontSize: 20 }}> Press me to find glory! </Text>
+                    <Text style={{ color: '#ffffff', marginRight: 10, fontSize: 20 }}> Press me to find glory!{this.props.location.coords.latitude} </Text>
                     <MaterialIcons name='search' size={40} style={{ color: 'white' }} />
                 </Button>
             </View>
@@ -95,6 +98,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     const location = state.loc.location;
+    // console.log('content updates');
+    // console.log(location);
     return { location };
 };
 

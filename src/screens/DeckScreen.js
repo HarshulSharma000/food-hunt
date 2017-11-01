@@ -108,7 +108,7 @@ class Deck extends Component {
         //     parseFloat(restaurant.location.longitude), 
         //     parseFloat(restaurant.location.latitude)
         // );
-        return (//To be continued...
+        return (
             <Card style={{ height: 500 }}>
                 <CardItem style={{ flex: 1, height: 300 }}>
                 {this.mapTime(restaurant)}    
@@ -129,8 +129,26 @@ class Deck extends Component {
             </Card>     
         );
     }
+    emptyCard() {
+        return (
+            <Card style={{  flex: 1 }}>
+                
+                <CardItem>
+                    <Text style={{ fontSize: 110, fontStyle: 'center' }}> DANCE cuz</Text>
+                </CardItem>
+                <CardItem>
+                    <Text style={{ fontSize: 50 }}> Nothing to Display </Text>
+                </CardItem>
+                
+            </Card>     
+        );
+    }
     render() {
         const { data, likedList } = this.props;
+        data.pop();
+        if (data.length === 0) {
+            return (this.emptyCard());
+        }
         _.remove(data, (item) => {
             return likedList.find(litem => litem.key === item.key);
         });
@@ -140,6 +158,7 @@ class Deck extends Component {
                 data={data}
                 renderCard={this.renderCard.bind(this)}
                 onSwipeRight={this.onSwipeRight.bind(this)}
+                renderNoMoreCards={() => this.emptyCard()}
                 />
         );
     }

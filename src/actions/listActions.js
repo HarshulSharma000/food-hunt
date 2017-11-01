@@ -2,13 +2,14 @@ import axios from 'axios';
 import qs from 'qs';
 
 
-import { LIST_UPDATE, ADD_TO_LIKED_LIST } from './Types';
+import { LIST_UPDATE, ADD_TO_LIKED_LIST, CLEAR_LIKED_LIST } from './Types';
 import { zomatoKey } from '../config/keys';
 
 const API_BASE_URL = 'https://developers.zomato.com/api/v2.1/search?';
 
 export const getList = (lat, lon) => async(dispatch) => {
     try {
+        console.log('You don\'t always have a lots of time', lat, lon);
         const data = {
             lat,
             lon,
@@ -45,5 +46,12 @@ export const addToLikedList = (item) => {
     return {
         type: ADD_TO_LIKED_LIST,
         payload: item
+    };
+};
+
+export const clearLikedList = () => {
+    return {
+        type: CLEAR_LIKED_LIST,
+        payload: 'nothing:)'
     };
 };
