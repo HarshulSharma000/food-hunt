@@ -13,7 +13,7 @@ export const getList = (lat, lon) => async(dispatch) => {
             lat,
             lon,
             sort: 'real_distance',
-            count: '20',
+            count: '40',
             order: 'asc'
         };
         const requrl = API_BASE_URL + qs.stringify(data);

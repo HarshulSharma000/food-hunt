@@ -5,6 +5,7 @@ import { Entypo } from '@expo/vector-icons';
 import { Card, CardItem } from 'native-base';
 import { connect } from 'react-redux';
 import StarRating from 'react-native-star-rating';
+import _ from 'lodash';
 
 import Swipe from '../components/common/Swipe';
 import * as actions from '../actions';
@@ -99,7 +100,6 @@ class Deck extends Component {
         );
     }
     onSwipeRight(item) {
-        console.log(item);
         this.props.addToLikedList(item);
     }
     renderCard(item, i, index) {
@@ -130,7 +130,10 @@ class Deck extends Component {
         );
     }
     render() {
-        const { data } = this.props;
+        const { data, likedList } = this.props;
+        _.remove(data, (item) => {
+            return likedList.find(litem => litem.key === item.key);
+        });
         return (
            
                 <Swipe
@@ -153,7 +156,10 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     //console.log(state.list);
-    return { data: state.list.fetchedList };
+    return { 
+        data: state.list.fetchedList,
+        likedList: state.list.likedList
+    };
 };
 
 export default connect(mapStateToProps, actions)(Deck);
