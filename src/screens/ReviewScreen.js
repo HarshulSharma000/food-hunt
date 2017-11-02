@@ -28,9 +28,11 @@ class Review extends Component {
             ); 
         }
     });
-    // componentWillRecieveProps(nextProps) {
 
+    // componentWillReceiveProps(nextProps) {
+    //     console.log('called');
     // }
+
     mapTime(restaurant) {
         const longitude = parseFloat(restaurant.location.longitude);
         const latitude = parseFloat(restaurant.location.latitude);
@@ -63,12 +65,23 @@ class Review extends Component {
             </MapView>
         );
     }
+    
+    emptyCard() {
+        return (
+            <Card style={{ flex: 1 }}>
+                <CardItem>
+                    <Text style={{ fontSize: 10, fontStyle: 'italic' }}> DANCE cuz</Text>
+                </CardItem>
+                <CardItem>
+                    <Text style={{ fontSize: 50 }}> Nothing to Display </Text>
+                </CardItem>
+                
+            </Card>     
+        );
+    }
     renderCard({ item }) {
+        //console.log(item,'its here');
         const { restaurant } = item;
-        // this.renderMap(
-        //     parseFloat(restaurant.location.longitude), 
-        //     parseFloat(restaurant.location.latitude)
-        // );
         return (//To be continued...
             <Card style={{ height: 500 }}>
                 <CardItem style={{ flex: 1, height: 300 }}>
@@ -90,17 +103,35 @@ class Review extends Component {
             </Card>     
         );
     }
-    render() {
-        //console.log(this.props.data);
-        return (
-            <View style={styles.container} >
 
-                <FlatList
+    renderList() {
+        if (this.props.data.length === 1) {
+            return (this.emptyCard()
+            );   
+        } 
+
+        return (
+            <FlatList
                 data={this.props.data.reverse()}
                 renderItem={this.renderCard.bind(this)}
-                extraData={this.props.data}
-                />
-            </View>
+                extraData={[...this.props.data]}
+            />
+        );
+        
+    }
+    render() {
+        //console.log('it rerenders baby :I');
+        if (this.props.data.length === 1) {
+            return (this.emptyCard()
+            );   
+        } 
+
+        return (
+            <FlatList
+                data={this.props.data.reverse()}
+                renderItem={this.renderCard.bind(this)}
+                extraData={[...this.props.data]}
+            />
         );
     }
 }
@@ -115,8 +146,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    console.log('something changed', state.list.likedList);
-    return { data: state.list.likedList };
+    // console.log('something changed, call it a state reset');
+    return { data: state.list.likedList, length: state.list.likedList.length };//Break tradtitions and have a price to pay
 };
 
 export default connect(mapStateToProps)(Review);

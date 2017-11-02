@@ -134,7 +134,7 @@ class Deck extends Component {
             <Card style={{  flex: 1 }}>
                 
                 <CardItem>
-                    <Text style={{ fontSize: 110, fontStyle: 'center' }}> DANCE cuz</Text>
+                    <Text style={{ fontSize: 110, fontStyle: 'italic' }}> DANCE cuz</Text>
                 </CardItem>
                 <CardItem>
                     <Text style={{ fontSize: 50 }}> Nothing to Display </Text>

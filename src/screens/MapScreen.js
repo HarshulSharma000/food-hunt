@@ -28,11 +28,11 @@ class Map extends Component {
     componentDidMount() {
         this.setState({ mapLoaded: true });
     }
-    componentWillRecieveProps(nextProps) {
-        console.log('doodlee');
-        const { latitude, longitude } = nextProps;
-        console.log(latitude,longitude);
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     console.log('doodlee');
+    //     const { latitude, longitude } = nextProps;
+    //     console.log(latitude,longitude);
+    // }
     shouldComponentUpdate() {
         return true;
     }
@@ -79,7 +79,7 @@ class Map extends Component {
                 }}
                 rounded
                 >
-                    <Text style={{ color: '#ffffff', marginRight: 10, fontSize: 20 }}> Press me to find glory!{this.props.location.coords.latitude} </Text>
+                    <Text style={{ color: '#ffffff', marginRight: 10, fontSize: 20 }}> Press me to find glory! </Text>
                     <MaterialIcons name='search' size={40} style={{ color: 'white' }} />
                 </Button>
             </View>
