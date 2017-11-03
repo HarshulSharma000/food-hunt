@@ -8,6 +8,9 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
+    "splash": {
+      "image": "./assets/icons/vader404.png"
+    },
     "icon": "./assets/icons/app-icon.png",
     "loading": {
       "icon": "./assets/icons/loading-icon.png"

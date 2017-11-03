@@ -1,4 +1,5 @@
-import { LIST_UPDATE, ADD_TO_LIKED_LIST, CLEAR_LIKED_LIST } from '../actions/Types';
+import { LIST_UPDATE, ADD_TO_LIKED_LIST, CLEAR_LIKED_LIST, LIKED_LIST_UPDATE } from '../actions/Types';
+import { AsyncStorage } from 'react-native';
 
 const INITIAL_STATE = {
   fetchedList:  [{
@@ -91,17 +92,18 @@ const INITIAL_STATE = {
     }
   }]
 };
-export default (state = { ...INITIAL_STATE }, action) => {
+export default (state = { ...INITIAL_STATE }, action) => { //Dare to make this async and you will regret all your life
     switch (action.type) {
         case LIST_UPDATE:
-        console.log(action.payload[0]);
             return { ...state, fetchedList: action.payload };
         case ADD_TO_LIKED_LIST:
             state.likedList.push(action.payload); //Sometimes traditions are broken for performance
-            console.log(state.likedList.length);
+            //await AsyncStorage.mergeItem('likedList', action.payload);
             return { ...state };
         case CLEAR_LIKED_LIST:
             return { ...state, likedList: [INITIAL_STATE.likedList[0]] };
+        case LIKED_LIST_UPDATE:
+            return { ...state, likedList: action.payload };
         default:
             return state;
     }

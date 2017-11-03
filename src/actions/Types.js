@@ -4,3 +4,4 @@ export const LOCATION_UPDATE = 'location_update';
 export const LIST_UPDATE = 'list_update';
 export const ADD_TO_LIKED_LIST = 'add_to_liked_list';
 export const CLEAR_LIKED_LIST = 'clear_liked_list';
+export const LIKED_LIST_UPDATE = 'liked_list_update';

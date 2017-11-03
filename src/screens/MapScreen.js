@@ -33,12 +33,11 @@ class Map extends PureComponent {
     //     const { latitude, longitude } = nextProps;
     //     console.log(latitude,longitude);
     // }
-    shouldComponentUpdate() {
-        return true;
-    }
+    // shouldComponentUpdate() {
+    //     return true;
+    // }
     render() {
         const { latitude, longitude } = this.props.location.coords;
-        console.log(latitude, longitude);
         return (
             <View style={{ flex: 1 }} >
                 <MapView 
@@ -98,8 +97,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     const location = state.loc.location;
-    // console.log('content updates');
-    // console.log(location);
     return { location };
 };
 

@@ -132,7 +132,7 @@ class Deck extends Component {
     }
     emptyCard() {
         return (
-            <Card style={{  flex: 1 }}>
+            <Card style={{ flex: 1, height: 300 }}>
                 
                 <CardItem>
                     <Text style={{ fontSize: 110, fontStyle: 'italic' }}> DANCE cuz</Text>
@@ -150,12 +150,15 @@ class Deck extends Component {
         if (data.length === 0) {
             return (this.emptyCard());
         }
-        _.remove(data, (item) => {
-            return likedList.find(litem => litem.key === item.key);
-        });
+        if (likedList) {
+            _.remove(data, (item) => {
+                return likedList.find(litem => litem.key === item.key);
+            });
+        }
         return (
            
                 <Swipe
+                style={{ flex: 1 }}
                 data={data}
                 renderCard={this.renderCard.bind(this)}
                 onSwipeRight={this.onSwipeRight.bind(this)}
@@ -175,7 +178,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    //console.log(state.list);
+    //console.log(state);
     return { 
         data: state.list.fetchedList,
         likedList: state.list.likedList

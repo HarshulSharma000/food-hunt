@@ -9,11 +9,8 @@ import * as actions from '../actions';
 const SCREEN_WIDTH = Dimensions.get('window').witdh;
 
 class Auth extends Component {
-    // async componentDidMount() {
-    //    // await this.props.getLocation();
-    // }
+
     render() {
-        //console.log(this.props.state);
         return (
             <View style={styles.container} >
                 <View >

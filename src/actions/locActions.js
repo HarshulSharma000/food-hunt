@@ -11,9 +11,7 @@ export const getLocation = () => async (dispatch) => {
         return;
     }
     //const answer = await Location.getProviderStatusAsync();
-    console.log(Constants.deviceId);
     while (!location) {
-        console.log(location);
         try {
             location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true, timeout: 3000, maximumAge: 1000000 });
             console.log('got this', location);

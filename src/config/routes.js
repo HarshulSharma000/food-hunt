@@ -11,7 +11,7 @@ import ReviewScreen from '../screens/ReviewScreen';
 import SettingScreen from '../screens/SettingScreen';
 
 const Routes = {
-    Splash: { screen: SplashScreen },
+   
     Welcome: { screen: WelcomeScreen },
     Auth: { screen: AuthScreen },
     Main: {

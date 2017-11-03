@@ -2,14 +2,13 @@ import axios from 'axios';
 import qs from 'qs';
 
 
-import { LIST_UPDATE, ADD_TO_LIKED_LIST, CLEAR_LIKED_LIST } from './Types';
+import { LIST_UPDATE, ADD_TO_LIKED_LIST, CLEAR_LIKED_LIST, LIKED_LIST_UPDATE } from './Types';
 import { zomatoKey } from '../config/keys';
 
 const API_BASE_URL = 'https://developers.zomato.com/api/v2.1/search?';
 
 export const getList = (lat, lon) => async(dispatch) => {
     try {
-        console.log('You don\'t always have a lots of time', lat, lon);
         const data = {
             lat,
             lon,
@@ -19,14 +18,12 @@ export const getList = (lat, lon) => async(dispatch) => {
         };
         const requrl = API_BASE_URL + qs.stringify(data);
         console.log(requrl);
-        console.log(zomatoKey);
         const list = await axios.get(requrl, {
             headers: {
             'user-key': zomatoKey
             }
         });
         console.log(list.status);
-        //console.log(list.data[1]);
         const restaurants = list.data.restaurants.map((item) => {
                 return ({
                     ...item, key: item.restaurant.R.res_id
@@ -53,5 +50,12 @@ export const clearLikedList = () => {
     return {
         type: CLEAR_LIKED_LIST,
         payload: 'nothing:)'
+    };
+};
+
+export const likedListUpdate = (data) => {
+    return {
+        type: LIKED_LIST_UPDATE,
+        payload: data
     };
 };

@@ -28,10 +28,11 @@ class AppWithNavigationState extends Component {
     }
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+        console.log('unmounting');
     }
     onBackPress = () => { //Back Handle functionality may be altered as per requirement
         const { dispatch, nav } = this.props;
-        if (nav.routes[3].index === 0) {
+        if (nav.routes[2].index === 0) {
             BackHandler.exitApp();
             return true;
         }

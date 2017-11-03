@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Platform, FlatList } from 'react-native';
+import { Text, View, StyleSheet, Platform, FlatList, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Card, CardItem } from 'native-base';
 import StarRating from 'react-native-star-rating';
@@ -8,6 +8,7 @@ import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { MapView } from 'expo';
 
 import PureWrapper from '../components/common/PureWrapper';
+import * as actions from '../actions';
 
 class Review extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -20,7 +21,7 @@ class Review extends Component {
                         <FontAwesome size={30} name='gear' />
                 </Button>
         ),
-        tabBarIcon: ({ tintcolor }) => { 
+        tabBarIcon: () => { 
             return (
                 <MaterialIcons 
                     name='favorite' 
@@ -31,9 +32,24 @@ class Review extends Component {
         }
     });
 
-    // componentWillReceiveProps(nextProps) {
-    //     console.log('called');
-    // }
+    async componentWillMount() {
+        let { data } = JSON.parse(await AsyncStorage.getItem('likedList'));
+
+        if (data) {
+            this.props.likedListUpdate(data);            
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('called');
+        const { data } = nextProps;
+        AsyncStorage.setItem('likedList', JSON.stringify({ data }));
+    }
+
+    async componentWillUnmount() { // Never Works
+        // console.log('to save', this.props.data.length);
+        // //await AsyncStorage.setItem('likedList', this.props.data);
+    }
 
     mapTime(restaurant) {
         const longitude = parseFloat(restaurant.location.longitude);
@@ -77,12 +93,10 @@ class Review extends Component {
                 <CardItem>
                     <Text style={{ fontSize: 50 }}> Nothing to Display </Text>
                 </CardItem>
-                
             </Card>     
         );
     }
     renderCard({ item }) {
-        //console.log(item,'its here');
         const { restaurant } = item;
         return (//To be continued...
             <PureWrapper>
@@ -108,28 +122,14 @@ class Review extends Component {
         );
     }
 
-    renderList() {
-        if (this.props.data.length === 1) {
-            return (this.emptyCard()
-            );   
-        } 
-
-        return (
-            <FlatList
-                data={this.props.data.reverse()}
-                renderItem={this.renderCard.bind(this)}
-                extraData={[...this.props.data]}
-            />
-        );
-        
-    }
-    render() {
+     render() { // render() not so cool when handling promises
         //console.log('it rerenders baby :I');
+        const { data } = this.props;
         if (this.props.data.length === 1) {
-            return (this.emptyCard()
-            );   
+            return (this.emptyCard());   
         } 
-
+        console.log(data);
+        //await AsyncStorage.setItem('linkedList', JSON.stringify({ data }));
         return (
             <FlatList
                 data={this.props.data.reverse()}
@@ -154,4 +154,4 @@ const mapStateToProps = (state) => {
     return { data: state.list.likedList, length: state.list.likedList.length };//Break tradtitions and have a price to pay
 };
 
-export default connect(mapStateToProps)(Review);
+export default connect(mapStateToProps, actions)(Review);
