@@ -7,6 +7,8 @@ import StarRating from 'react-native-star-rating';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { MapView } from 'expo';
 
+import PureWrapper from '../components/common/PureWrapper';
+
 class Review extends Component {
     static navigationOptions = ({ navigation }) => ({
         headerRight: ( //Sometimes it works sometimes it doesn't maybe its about first component..
@@ -83,24 +85,26 @@ class Review extends Component {
         //console.log(item,'its here');
         const { restaurant } = item;
         return (//To be continued...
-            <Card style={{ height: 500 }}>
-                <CardItem style={{ flex: 1, height: 300 }}>
-                {this.mapTime(restaurant)}    
-                </CardItem>
-                <CardItem>
-                    <Text style={{ fontSize: 10 }}> {restaurant.name}</Text>
-                </CardItem>
-                <CardItem>
-                    <Text> {restaurant.location.address} </Text>
-                </CardItem>
-                <CardItem>
-                    <StarRating
-                    disabled
-                    maxStars={5}
-                    rating={restaurant.user_rating.aggregate_rating}
-                    />
-                </CardItem>
-            </Card>     
+            <PureWrapper>
+                <Card style={{ height: 500 }}>
+                    <CardItem style={{ flex: 1, height: 300 }}>
+                    {this.mapTime(restaurant)}    
+                    </CardItem>
+                    <CardItem>
+                        <Text style={{ fontSize: 10 }}> {restaurant.name}</Text>
+                    </CardItem>
+                    <CardItem>
+                        <Text> {restaurant.location.address} </Text>
+                    </CardItem>
+                    <CardItem>
+                        <StarRating
+                        disabled
+                        maxStars={5}
+                        rating={restaurant.user_rating.aggregate_rating}
+                        />
+                    </CardItem>
+                </Card>     
+            </PureWrapper>
         );
     }
 
@@ -130,7 +134,7 @@ class Review extends Component {
             <FlatList
                 data={this.props.data.reverse()}
                 renderItem={this.renderCard.bind(this)}
-                extraData={[...this.props.data]}
+                extraData={this.props.data.length}
             />
         );
     }

@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, Animated, PanResponder, Dimensions, UIManager, LayoutAnimation, Text } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
 const SWIPE_OUT_DURATION = 100;
 
-class Swipe extends Component {
+class Swipe extends PureComponent {
     static defaultProps = {
       onSwipeRight: () => {},
       onSwipeLeft: () => {},

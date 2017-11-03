@@ -100,7 +100,8 @@ class Deck extends Component {
         );
     }
     onSwipeRight(item) {
-        this.props.addToLikedList(item);
+        setTimeout(() => this.props.addToLikedList(item), 2000);
+        //this.props.addToLikedList(item);
     }
     renderCard(item, i, index) {
         const { restaurant } = item;

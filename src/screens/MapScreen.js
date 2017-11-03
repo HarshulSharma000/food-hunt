@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import { Text, View, StyleSheet, ActivityIndicator, Dimensions } from 'react-native';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
@@ -8,7 +8,7 @@ import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import * as actions from '../actions';
 
 const SCREEN_WIDTH = Dimensions.get('screen').width;
-class Map extends Component {
+class Map extends PureComponent {
     static navigationOptions = {
         tabBarIcon: ({ tintcolor }) => { 
             return (
