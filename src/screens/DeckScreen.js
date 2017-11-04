@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Modal, TouchableHighlight, Alert, Image } from 'react-native';
 import { MapView } from 'expo';
 import { Entypo } from '@expo/vector-icons';
-import { Card, CardItem } from 'native-base';
+import { Card, CardItem, Button } from 'native-base';
 import { connect } from 'react-redux';
 import StarRating from 'react-native-star-rating';
 import _ from 'lodash';
@@ -29,7 +29,6 @@ class Deck extends Component {
             latitudeDelta: 0,
             longitudeDelta: 0
         },
-        modalVisible: true
     }
     async takeSnapshot() {
         // 'takeSnapshot' takes a config object with the
@@ -136,52 +135,12 @@ class Deck extends Component {
             <Card style={{ flex: 1, height: 300 }}>
                 
                 <CardItem>
-                    <Text style={{ fontSize: 110, fontStyle: 'italic' }}> DANCE cuz</Text>
+                    <Text style={{ fontSize: 50, fontStyle: 'italic' }}> DANCE cuz</Text>
                 </CardItem>
                 <CardItem>
                     <Text style={{ fontSize: 50 }}> Nothing to Display </Text>
                 </CardItem>
                 <View>
-                    <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => { Alert("Modal has been closed.")}}
-                    >
-                        <View style={{  
-                            flex: 1,
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            elevation: 800,
-                            height: 500,
-                            backgroundColor: '#ffffff',
-                            marginHorizontal: 10,
-                            marginVertical: 30,
-                            borderColor: '#2a2d33',
-                            borderRadius: 20,
-                            borderWidth: .2
-                        }}>
-                            <View>
-                                <Text style={{fontSize: 40, marginHorizontal: 3}}>Do you want me to get your locations without you even turning the GPS on?</Text>
-                                <Image source={require('../../assets/icons/seriously.jpg')} />
-                                
-
-                                <TouchableHighlight onPress={() => {
-                                this.setState({ modalVisible: !this.state.modalVisible });
-                                }}>
-                                <Text>Hide Modal</Text>
-                                </TouchableHighlight>
-
-                            </View>
-                        </View>
-                    </Modal>
-
-                    <TouchableHighlight onPress={() => {
-                        this.setState({ modalVisible: !this.state.modalVisible });
-                    }}>
-                    <Text>Show Modal</Text>
-                    </TouchableHighlight>
                 </View>
                     
             </Card>     

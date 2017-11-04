@@ -128,7 +128,7 @@ class Review extends Component {
         if (this.props.data.length === 1) {
             return (this.emptyCard());   
         } 
-        console.log(data);
+        //console.log(data);
         //await AsyncStorage.setItem('linkedList', JSON.stringify({ data }));
         return (
             <FlatList

@@ -23,7 +23,7 @@ class Welcome extends Component {
                     const token = await AsyncStorage.getItem('fb_token');
                     if (token) { 
                         let { data } = JSON.parse(await AsyncStorage.getItem('likedList'));
-                        console.log(data);
+                        //console.log(data);
                         if (data) {
                             this.props.likedListUpdate(data);            
                         } 
