@@ -1,5 +1,13 @@
 import React, { PureComponent } from 'react';
-import { View, Animated, PanResponder, Dimensions, UIManager, LayoutAnimation, Text } from 'react-native';
+import { 
+  View, 
+  Animated, 
+  PanResponder, 
+  Dimensions, 
+  UIManager, 
+  LayoutAnimation, 
+  Text 
+} from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
@@ -87,14 +95,16 @@ class Swipe extends PureComponent {
 
       return this.props.data.map((item, i) => {
         if (i - this.state.index > 2) {
-          return (
-            <Animated.View
-            style={[styles.cardStyle, { zIndex: 5, top: 10 * (i - this.state.index), height: 600 }]}
-            key={item.key}
-            > 
-            <Text> HI I am empty! </Text>
-            </Animated.View>
-          );
+          return null; 
+          // Why play along the rules? When you can cheat...
+          // return (
+          //   <Animated.View
+          //   style={[styles.cardStyle, { zIndex: 5, top: 10 * (i - this.state.index), height: 600 }]}
+          //   key={item.key}
+          //   > 
+          //   <Text> HI I am empty! </Text>
+          //   </Animated.View>
+          // );
         }
         if (i < this.state.index) { return null; }
 
@@ -121,7 +131,7 @@ class Swipe extends PureComponent {
     }
     render() {
         return (
-          <View >
+          <View style={{ }}>
             {this.renderCards()}
           </View>
         );

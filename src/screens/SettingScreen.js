@@ -8,15 +8,14 @@ import * as actions from '../actions';
 
 class Setting extends Component {
     static navigationOptions = {
-        tabBarIcon: ({ tintcolor }) => { 
-            return (
-                <FontAwesome 
-                    size={26} 
-                    color='white'
-                    name='gear' 
-                />
-            ); 
-        }
+        headerStyle: { marginTop: 24 },
+        tabBarIcon: () => (
+            <FontAwesome 
+                size={26} 
+                color='white'
+                name='gear' 
+            />
+        )
     }
     render() {
         return (
@@ -39,8 +38,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    
   },
 });
 

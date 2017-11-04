@@ -1,8 +1,13 @@
 import axios from 'axios';
 import qs from 'qs';
 
+import { 
+    LIST_UPDATE, 
+    ADD_TO_LIKED_LIST, 
+    CLEAR_LIKED_LIST, 
+    LIKED_LIST_UPDATE 
+} from './Types';
 
-import { LIST_UPDATE, ADD_TO_LIKED_LIST, CLEAR_LIKED_LIST, LIKED_LIST_UPDATE } from './Types';
 import { zomatoKey } from '../config/keys';
 
 const API_BASE_URL = 'https://developers.zomato.com/api/v2.1/search?';

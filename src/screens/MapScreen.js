@@ -1,5 +1,5 @@
-import React, { Component, PureComponent } from 'react';
-import { Text, View, StyleSheet, Dimensions, Modal, Image } from 'react-native';
+import React, { PureComponent } from 'react';
+import { Text, View, StyleSheet, Modal, Image } from 'react-native';
 import { MapView, Location } from 'expo';
 import { connect } from 'react-redux';
 import { Button } from 'native-base';
@@ -7,18 +7,15 @@ import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import * as actions from '../actions';
 
-const SCREEN_WIDTH = Dimensions.get('screen').width;
 class Map extends PureComponent {
     static navigationOptions = {
-        tabBarIcon: ({ tintcolor }) => { 
-            return (
+        tabBarIcon: () => (
                 <MaterialCommunityIcons 
                     name='google-maps' 
                     size={26} 
                     color='white'
                 />
-            ); 
-        }
+        )
     };
     state= { 
         modalVisible: false, 
@@ -26,6 +23,11 @@ class Map extends PureComponent {
     };
     async componentWillMount() {
         //const { latitude, longitude } = this.props;
+        const gps = await Location.getProviderStatusAsync();
+        console.log(gps);
+        if (gps.gpsAvailable) {
+            this.setState({ modalVisible: false, done: true });
+        }
         while (!this.state.done) {
             try {
                 let gps = await new Promise(this.showModal);
@@ -67,21 +69,16 @@ class Map extends PureComponent {
             transparent
             visible={this.state.modalVisible}
             >
-                <View style={{  
-                    flex: 1,
-                    flexDirection: 'column',
-                    justifyContent: 'space-around',
-                    alignItems: 'center',
-                    elevation: 8,
-                    backgroundColor: '#a8bddd',
-                    marginHorizontal: 10,
-                    marginVertical: 20,
-                    borderColor: '#2a2d33',
-                    borderRadius: 20,
-                    borderWidth: .2
-                }}>
+                <View style={styles.modalStyle}>
                     <Text style={{ fontSize: 50 }} > GPS IS OFF!! </Text>
-                    <Text style={{fontSize: 30, marginHorizontal: 10}}>Do you want me to get your locations without you even turning the GPS on?</Text>
+                    <Text 
+                        style={{ 
+                            fontSize: 30, 
+                            marginHorizontal: 10
+                        }}
+                    >
+                        Do you want me to get your locations without you even turning the GPS on?
+                    </Text>
                     <Image
                         style={{ marginVertical: 5 }}
                         source={require('../../assets/icons/seriously.jpg')} 
@@ -106,14 +103,7 @@ class Map extends PureComponent {
         return (
             <View style={{ flex: 1 }} >
                 <MapView 
-                style={{  //Its all about style B)
-                    flex: 1,
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0
-                }}
+                style={styles.mapStyles}
                 region={{
                     latitude,
                     longitude,
@@ -130,17 +120,12 @@ class Map extends PureComponent {
                 large
                 block
                 onPress={async () => {
-                    const {latitude, longitude} = this.props.location.coords;//Aim is to use props not captured variables 
+                    const { latitude, longitude } = this.props.location.coords;
+                    //Aim is to use props not captured variables 
                     await this.props.getList(latitude, longitude);
                     this.props.navigation.navigate('Deck');
                 }}
-                style={{ 
-                    backgroundColor: '#009688',
-                    position: 'absolute',
-                    left: 20,
-                    right: 20,
-                    bottom: 30
-                }}
+                style={styles.buttonStyle}
                 rounded
                 >
                     <Text style={{ color: '#ffffff', marginRight: 10, fontSize: 20 }}> Press me to find glory! </Text>
@@ -153,12 +138,34 @@ class Map extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    buttonStyle: { 
+        backgroundColor: '#009688',
+        position: 'absolute',
+        left: 20,
+        right: 20,
+        bottom: 30
+    },
+    modalStyle: {  
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        elevation: 8,
+        backgroundColor: '#a8bddd',
+        marginHorizontal: 10,
+        marginVertical: 20,
+        borderColor: '#2a2d33',
+        borderRadius: 20,
+        borderWidth: 0.2
+    },
+    mapStyles: {  //Its all about style B)
+        flex: 1,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+    }
 });
 
 const mapStateToProps = (state) => {

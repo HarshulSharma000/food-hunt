@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
 import { StackNavigator, TabNavigator } from 'react-navigation';
-import { BackHandler } from 'react-native';
 
-import SplashScreen from '../screens/SplashScreen';
+import SplashScreen from '../screens/SplashScreen';//Hmmm Those good old days...
 import WelcomeScreen from '../screens/WelcomeScreen';
 import AuthScreen from '../screens/AuthScreen';
 import MapScreen from '../screens/MapScreen';
@@ -22,16 +20,16 @@ const Routes = {
                 screen: StackNavigator({
                     Review: { screen: ReviewScreen },
                     Setting: { screen: SettingScreen }
+                }, {
+                    navigationOptions: {
+                        marginTop: 22
+                    }
                 })
             }
         }, {
             tabBarPosition: 'bottom',
             tabBarOptions: {
                 showLabel: false,
-                // labelStyle: { 
-                //     fontSize: 12,
-                //     height: 10
-                // },
                 tabStyle: {
                     height: 60,
                 },

@@ -1,3 +1,4 @@
+//Remenants of Ancient History
 import React, { Component } from 'react';
 import { View, Image, Dimensions, AsyncStorage } from 'react-native';
 

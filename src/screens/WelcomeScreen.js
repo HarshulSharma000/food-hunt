@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, AsyncStorage } from 'react-native';
+import { View, StyleSheet, AsyncStorage } from 'react-native';
 import { AppLoading } from 'expo';
 import { connect } from 'react-redux';
 
-import Slides from '../components/common/slides';
+import Slides from '../components/common/Slides';
 import * as actions from '../actions';
 
 const SLIDE_DATA = [
   { text: 'Welcome to FoodHunt  ', color: '#03A9F4' },
   { text: 'Use this to food from places around you', color: '#009688' },
-  { text: 'Set your location, then swipe away', color: '#03A9F4' }
+  { text: 'Log In to your facebook account and then swipe away', color: '#03A9F4' }
 ];
 
 class Welcome extends Component {
@@ -22,7 +22,7 @@ class Welcome extends Component {
                 startAsync={async () => {
                     const token = await AsyncStorage.getItem('fb_token');
                     if (token) { 
-                        let { data } = JSON.parse(await AsyncStorage.getItem('likedList'));
+                        const { data } = JSON.parse(await AsyncStorage.getItem('likedList'));
                         //console.log(data);
                         if (data) {
                             this.props.likedListUpdate(data);            
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(null,actions)(Welcome);
+export default connect(null, actions)(Welcome);

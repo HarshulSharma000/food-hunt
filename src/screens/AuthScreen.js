@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'native-base';
-import { Entypo } from '@expo/vector-icons';
+import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import * as actions from '../actions';
-
-const SCREEN_WIDTH = Dimensions.get('window').witdh;
 
 class Auth extends Component {
 
@@ -31,6 +29,16 @@ class Auth extends Component {
                     >
                         <Text style={{ fontSize: 20, marginRight: 20 }}> Log IN </Text>
                         <Entypo name='facebook' size={30} />
+                        <Text style={{ fontSize: 20, marginRight: 20 }}> (Broken) </Text>
+                    </Button>
+                    <View style={{ height: 20 }} />
+                    <Button 
+                    info 
+                    block
+                    onPress={() => this.props.navigation.navigate('Main')} 
+                    >
+                        <Text style={{ fontSize: 20, marginRight: 20 }}> ByPass </Text>
+                        <MaterialCommunityIcons name='run-fast' size={30} />
                     </Button>
                 </View>
             </View>
