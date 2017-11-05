@@ -131,7 +131,7 @@ class Swipe extends PureComponent {
     }
     render() {
         return (
-          <View style={{ }}>
+          <View style={{ flex: 1 }}>
             {this.renderCards()}
           </View>
         );

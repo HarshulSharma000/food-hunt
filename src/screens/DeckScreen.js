@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Dimensions } from 'react-native';
 import { MapView } from 'expo';
 import { Entypo } from '@expo/vector-icons';
 import { Card, CardItem } from 'native-base';
@@ -11,8 +11,12 @@ import Swipe from '../components/common/Swipe';
 import * as actions from '../actions';
 import EmptyCard from '../components/common/EmptyCard';
 
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+
 class Deck extends Component {
-    static navigationOptions= {
+    static navigationOptions = () => ({
+        title: 'List',
+        headerRight: 'hi',
         headerStyle: { marginTop: 24 },
         tabBarIcon: () => (
             <Entypo 
@@ -21,7 +25,7 @@ class Deck extends Component {
                 color='white'
             />
         )
-    }
+    });
     state ={
         region: { 
             latitude: 0,
@@ -64,7 +68,7 @@ class Deck extends Component {
     renderCard(item, i, index) { //Sometimes you have to accept for the sake of interface
         const { restaurant } = item;
         return (
-            <Card style={{ height: 500 }}>
+            <Card style={{ height: SCREEN_HEIGHT - 120 }}>
                 <CardItem style={{ flex: 1, height: 300 }}>
                 {this.mapTime(restaurant)}    
                 </CardItem>
@@ -93,19 +97,21 @@ class Deck extends Component {
                 _.remove(data, (item) => likedList.find(litem => litem.key === item.key));
             }
             return (
-            
+                    <View
+                    style={{marginTop: 24, flex: 1}}
+                    >
                     <Swipe
-                    style={{ flex: 1 }}
                     data={data}
                     renderCard={this.renderCard.bind(this)}
                     onSwipeRight={this.onSwipeRight.bind(this)}
-                    renderNoMoreCards={() => (<EmptyCard />)}
+                    renderNoMoreCards={() => (<Card><EmptyCard /></Card>)}
                     />
+                    </View>
             );
     }
     render() {
         return (
-            <View style={{ marginTop: 24 }} >
+            <View style={{flex: 1}}>
                 {this.renderSelect()}
             </View>
         );

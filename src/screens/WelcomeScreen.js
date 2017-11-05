@@ -19,19 +19,19 @@ class Welcome extends Component {
         if (!this.state.isReady) {
             return (
                 <AppLoading
-                startAsync={async () => {
-                    const token = await AsyncStorage.getItem('fb_token');
-                    if (token) { 
+                    startAsync={async () => {
+                        const token = await AsyncStorage.getItem('fb_token');
                         const { data } = JSON.parse(await AsyncStorage.getItem('likedList'));
-                        //console.log(data);
+                        console.log(data);
                         if (data) {
-                            this.props.likedListUpdate(data);            
+                                this.props.likedListUpdate(data);            
                         } 
-                        this.props.navigation.navigate('Main');
-                    }
-                }}
-                onFinish={() => this.setState({ isReady: true })}
-                onError={console.warn}
+                        if (token) { 
+                            this.props.navigation.navigate('Main');
+                        }
+                    }}
+                    onFinish={() => this.setState({ isReady: true })}
+                    onError={console.warn}
                 />
             )
         }
