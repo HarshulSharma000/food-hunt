@@ -22,7 +22,12 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.harshul.foodhunt"
+      "package": "com.harshul.foodhunt",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCp-BUoX8B8699rkbnb2P2CK4gXSeesVcc"
+        }
+      }
     }
   }
 }
