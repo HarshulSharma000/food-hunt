@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
+    //console.log(state.list.fetchedList.length);
     return { 
         data: state.list.fetchedList,
         likedList: state.list.likedList

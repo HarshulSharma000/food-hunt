@@ -38,6 +38,10 @@ class Review extends Component {
         AsyncStorage.setItem('likedList', JSON.stringify({ data }));
     }
 
+    shouldComponentUpdate(nextProps) {
+        return nextProps.update;
+    }
+
     // async componentWillUnmount() { // Never Works Unless you live in a dreamworld...
     // }
 
@@ -122,7 +126,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     // console.log('something changed, call it a state reset');
-    return { data: state.list.likedList, length: state.list.likedList.length };
+    //console.log(state.nav);
+    return { data: state.list.likedList, length: state.list.likedList.length, update: (state.nav.routes[2].index === 2) };
     //Break tradtitions and have a price to pay
 };
 
