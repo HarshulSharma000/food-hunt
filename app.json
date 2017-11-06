@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "food-hunt",
+    "name": "Food Hunt",
     "description": "An empty new project just for fun and learning",
-    "slug": "food-hunt",
+    "slug": "foodhuntandroid",
     "privacy": "public",
     "sdkVersion": "22.0.0",
     "version": "1.0.0",
@@ -20,6 +20,9 @@
     },
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.harshul.foodhunt"
     }
   }
 }
