@@ -110,6 +110,7 @@ class Deck extends Component {
             );
     }
     render() {
+        console.log("hi time");
         return (
             <View style={{flex: 1}}>
                 {this.renderSelect()}
