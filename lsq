@@ -1,0 +1,228 @@
+[33mcommit f318d840e17aa83db7f03aa87c7b103fa2ed8fa9[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Sun Nov 19 21:09:43 2017 +0530
+
+    Added new bugs related to splash after sdk update.
+
+[33mcommit 66d5b8d83d7ab7baf5d60e3d9d72fa7a373cff91[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Sat Nov 18 01:01:39 2017 +0530
+
+    Hope so its done better remove files than to keep trying to ignore an older copy that is already in the tree
+
+[33mcommit 7e00755f3a21de0d26bd6793b1f745df6056be3a[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Sat Nov 18 00:57:35 2017 +0530
+
+    Another try
+
+[33mcommit f328bc85f1689d0322c752da6eff3bd38a938e92[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Sat Nov 18 00:44:48 2017 +0530
+
+    Why this commit? on ubuntu
+
+[33mcommit b63f376b4c9b64fe3a6de86327a45279c90943a3[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Fri Nov 17 23:47:04 2017 +0530
+
+    More configuration
+
+[33mcommit f4750d89887470a87a6fb8e8db35e9ef5de9c664[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Fri Nov 17 23:42:29 2017 +0530
+
+    Just some minor configuration changes
+
+[33mcommit b64689b0d82cb4d873f837922b7a942179d400c7[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Thu Nov 9 13:54:10 2017 +0530
+
+    Little changes
+
+[33mcommit 08eb60c5092176642fc5c9e31824ffa50c123692[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Mon Nov 6 21:48:00 2017 +0530
+
+    Made adding new cards to the liked list lighter
+
+[33mcommit a966c8f95ed5452e9a7145aa8fff0b3869d2307e[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Mon Nov 6 20:09:03 2017 +0530
+
+    Map configuration for android
+
+[33mcommit cf096a444a17a5630bb6c9d004d3478ffc071861[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Mon Nov 6 19:29:44 2017 +0530
+
+    Configured app.json
+
+[33mcommit 5a94d9abdcec114f16b788255502e9747abf47ba[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Mon Nov 6 18:31:36 2017 +0530
+
+    Configuration changes
+
+[33mcommit 3b30ebdd93235cec0d079fec6de4243035748a54[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Sun Nov 5 20:40:47 2017 +0530
+
+    Major images display issues solved, unauthenticated asyc storage fault fixed
+
+[33mcommit a0881143b901fa51f9b2c43bcce09e420b527377[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Sun Nov 5 01:36:10 2017 +0530
+
+    Primary features of the app are nearly complete and most of the styling is about to be done... Soon to be published
+
+[33mcommit abaa52fd091b7e88ce847de556f9f2462dafd99e[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Sat Nov 4 20:15:21 2017 +0530
+
+    Set gps off alert to work in appropriate duration to provide delays and adjusted modal to work
+
+[33mcommit 501711c6d5f06e688012b00ab396e3d28d9aff8c[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Sat Nov 4 02:37:37 2017 +0530
+
+    Modal view props set, image added and core functioning.
+
+[33mcommit 9c5e7bafaf5f771761480c5c9aa3a173dfd6a774[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Sat Nov 4 01:28:26 2017 +0530
+
+    Fixed Async Storage, added splash screen the major features of the app are nearly complete
+
+[33mcommit ad3d8e25452e35bb9b8fdc33aeb4636a085d010f[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Fri Nov 3 20:50:45 2017 +0530
+
+    Added performance optimisations to Map, Deck, Liked list and adding component to liked list
+
+[33mcommit ad76607900987cbf41e52950b749b50373137122[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Fri Nov 3 02:14:38 2017 +0530
+
+    Main store update rerendering issues solved, one element flat list and performance params to be configured
+
+[33mcommit 86fcedeb27179fee48e4dc1f2215966e157d518b[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Thu Nov 2 00:54:29 2017 +0530
+
+    Closure memory issue fixed, most of the features are nearly complete.
+
+[33mcommit ed36131186b971b7b049830bef838649f6b0324a[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Wed Nov 1 19:30:07 2017 +0530
+
+    Unique search is integrated
+
+[33mcommit 6ecc0aa904c2453733d6ba6cb566c3705296143e[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Wed Nov 1 00:11:25 2017 +0530
+
+    Semicolon in list reducer added for broken tradition
+
+[33mcommit 86d6580252af284216fc2e602eb2eda0ed139223[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Wed Nov 1 00:09:35 2017 +0530
+
+    Added liked list, Created flatlist component for review screen and integrated that within the screen, key prop added to the list
+
+[33mcommit 00ca28058b9fe53a0e3eff8481475bcddb85a2b8[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Tue Oct 31 19:51:12 2017 +0530
+
+    Added marker for location
+
+[33mcommit be246bfc2ceb9c4394b4bf8173f640090c1ac94d[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Tue Oct 31 00:57:43 2017 +0530
+
+    List View like deck added, snapshot idea dropped, height of cards is to be arranged
+
+[33mcommit 4b81f964bcb85c59f7df30bd0e172d671542030f[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Mon Oct 30 00:39:45 2017 +0530
+
+    Rating and card scratch added
+
+[33mcommit 6973728c4a2309fa78d7e80e6599fa3fabb9f34e[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Sun Oct 29 19:01:57 2017 +0530
+
+    Precision reduced, api calls added and location change integrated to state as well as view
+
+[33mcommit 3b8ff30c863e4437563c21912f97bc9422f1aaf3[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Thu Oct 26 16:58:22 2017 +0530
+
+    Api intial setup done, and a major key import bug solved bug solved
+
+[33mcommit 69e518f0a68d7633e09ac746d5938827325067d9[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Tue Oct 24 23:00:19 2017 +0530
+
+    Some blue screens just appear out of nowhere and fade away after finding centering location perfectly
+
+[33mcommit 2474ae8c9c7a41cde010fd8df64f92cad9b2ceab[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Mon Oct 23 00:26:22 2017 +0530
+
+    Its all about styling.... Do you know?
+
+[33mcommit 4ed063ef793914bcbeecf006f78c3369c91ede60[m
+Merge: 89845c7 fb3aad3
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Sun Oct 22 17:42:17 2017 +0530
+
+    Hell yeah
+
+[33mcommit 89845c7ec01a355416fbe1e2c4e0f7473001bf15[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Sun Oct 22 17:39:01 2017 +0530
+
+    SDK updated to 22.0.0  and hardcoded setting for a special device for location setting added.
+
+[33mcommit fb3aad397a957b80d22c7f694b0ae9ef3f3db8df[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Sun Oct 22 14:42:08 2017 +0530
+
+    Hi gotchas always confuse you... And most funny thing about them is they just keep multiplying...
+
+[33mcommit 823e897035806c6002ebccb7c10edb763d30061d[m
+Author: Harshul Sharma <harshulsharma000@oultook.com>
+Date:   Sun Oct 22 02:02:36 2017 +0530
+
+    Suddenly after a lots of gotchas... long lost locations is found once again
+
+[33mcommit e7ffd69ae89b64555d89c95c40f2f1f75cd46ff3[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Tue Oct 17 22:59:28 2017 +0530
+
+    Sometimes shit happens... Sometimes it doesn't :P
+
+[33mcommit b801cf89925d86957dc6d1235b3cd6bf40f9a25c[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Tue Oct 17 22:06:01 2017 +0530
+
+    Setting option modified for ReviewScreen
+
+[33mcommit 69aace35c52557255e5722ce64a6730114c434d1[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Tue Oct 17 20:35:07 2017 +0530
+
+    Icons added, Code shifted from react-native-elements to native-base
+
+[33mcommit 097691fd04f4ee6e12039122f2041f665aaf8940[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Tue Oct 17 19:31:31 2017 +0530
+
+    Facebook authentication,basic screens, navigators added
+
+[33mcommit da1cf5d237a174e6950ac3063489c49acf707f9f[m
+Author: HarshulSharma000 <harshulsharma000@outlook.com>
+Date:   Tue Oct 17 14:19:31 2017 +0530
+
+    Initial commit
